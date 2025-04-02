@@ -1,5 +1,6 @@
 package ga.justreddy.wiki.client;
 
+import ga.justreddy.wiki.database.Database;
 import ga.justreddy.wiki.util.Color;
 import ga.justreddy.wiki.util.Log;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -21,6 +22,7 @@ public final class Client {
     private final Dotenv env;
     private final String token;
     private JDA client;
+    private final Database database;
 
     public Client() {
         this.env = new DotenvBuilder()
@@ -28,6 +30,7 @@ public final class Client {
                 .filename(".env")
                 .load();
         this.token = env.get("BOT_TOKEN");
+        this.database = new Database(env.get("MONGO_URI"));
     }
 
     public void connect() {
