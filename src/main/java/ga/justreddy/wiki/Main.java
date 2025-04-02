@@ -1,7 +1,13 @@
 package ga.justreddy.wiki;
 
-public class Main {
+import ga.justreddy.wiki.client.Client;
+import ga.justreddy.wiki.client.ClientShutDownHook;
+
+public final class Main {
+
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        final Client client = new Client();
+        client.connect();
+        Runtime.getRuntime().addShutdownHook(new ClientShutDownHook(client));
     }
 }
