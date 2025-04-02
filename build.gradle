@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "8.1.1"
+}
+
+group = 'ga.justreddy.wiki'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("net.dv8tion:JDA:5.3.1")
+    implementation("org.projectlombok:lombok:1.18.38")
+    annotationProcessor("org.projectlombok:lombok:1.18.38")
+    implementation 'io.github.cdimascio:dotenv-java:3.2.0'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.setEncoding("UTF-8")
+    options.setIncremental(true)
+
+}
+
+shadowJar {}
